@@ -10,19 +10,19 @@ public class Demo {
 
     public static void main(String[] args) {
 
-        Client asan = new Client("Asan Uson", "123");
+        Client asan = new Client("Asan Uson", "1234");
 
         DepositAccount asanDepositAccount = new DepositAccount(asan, Currency.USD);
         CreditAccount asanCreditAccount = new CreditAccount(asan, Currency.EUR);
 
         asan.addAccount(asanDepositAccount);
         asan.addAccount(asanCreditAccount);
-        System.out.println(asan.getClientID());
+        System.out.println("\nClient ID: " + asan.getClientID() +"\n");
 
         clients.put(asan.getClientID(), asan);
 
-        System.out.println("=======Welcome toMbank=========");
-        System.out.print("Please enter client ID: ");
+        System.out.println("======= Welcome to Mbank =======");
+        System.out.print("\nPlease enter client ID: ");
         String clientID = scanner.nextLine();
         Client client = clients.get(clientID);
         if (client == null) {
@@ -35,8 +35,9 @@ public class Demo {
             System.out.println("You entered wrong pin code!");
             return;
         }
-        System.out.println(client.getFullName() + " welcome to Mbank");
+        System.out.println("\n" + client.getFullName() + ", welcome to Mbank!");
         while (true) {
+            System.out.println("Меню: ");
             System.out.println("1.Посмотреть счета");
             System.out.println("2.Перевести между счетами");
             System.out.println("3.Показать чек");
@@ -57,12 +58,11 @@ public class Demo {
                     String fromID = scanner.nextLine();
                     System.out.print("Введите номер счета получателя: ");
                     String toID = scanner.nextLine();
-                    System.out.println("Сумма: ");
+                    System.out.print("Сумма: ");
                     double amount = Double.parseDouble(scanner.nextLine());
                     BankAccount from = findAccount(fromID);
                     BankAccount to = findAccount(toID);
                     if (from != null && to != null) {
-                        BankService.transfer(from, to, amount);
                         boolean result = BankService.transfer(from, to, amount);
                         System.out.println(result ? "Операция прошла успешно" : "Ошибка перевода");
                     } else {
@@ -71,7 +71,7 @@ public class Demo {
                     break;
                 case "3":
                     for (BankAccount bankAccount : client.getAccounts()) {
-                        System.out.println("\n == чек по счету " + bankAccount.getAccountNumber());
+                        System.out.println("\n == чек по счету №: " + bankAccount.getAccountNumber());
                         for (Transaction transaction : bankAccount.getTransactions()) {
                             System.out.println(transaction);
                         }
@@ -89,10 +89,10 @@ public class Demo {
     }
 
     private static BankAccount findAccount(String accountNumber) {
-        for (Client client : clients.values()) {
-            for (BankAccount bankAccount : client.getAccounts()) {
+        for (Client client : clients.values()) { // находим клиентов
+            for (BankAccount bankAccount : client.getAccounts()) { // проверяем счета клиента
                 if (bankAccount.getAccountNumber().equals(accountNumber)) {
-                    return bankAccount;
+                    return bankAccount; // если находим возвращаем счет
                 }
             }
         }

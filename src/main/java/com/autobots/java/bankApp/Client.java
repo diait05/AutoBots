@@ -14,18 +14,18 @@ public class Client {
     public Client(String fullName, String pin) {
         this.fullName = fullName;
         this.pin = pin;
-        this.clientID = String.valueOf(UUID.randomUUID());
+        this.clientID = String.valueOf(UUID.randomUUID()); // clientID дается автоматом банк, чтоб не в ручную
     }
 
     public boolean authenticate(String inputPin) {
-        return this.pin.equals(inputPin);
+        return this.pin.equals(inputPin); // сравнение паролей
     }
 
-    void addAccount(BankAccount account){
+    public void addAccount(BankAccount account){
         accounts.add(account);
     }
 
-    public String getFullName() {
+    public String getFullName() { // setterов нет, тк final
         return fullName;
     }
 

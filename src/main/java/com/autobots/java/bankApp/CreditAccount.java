@@ -2,7 +2,7 @@ package com.autobots.java.bankApp;
 
 public class CreditAccount extends BankAccount{
 
-    private final double creditLimit = 1000;
+    private final double creditLimit = 1000; // максимум разрешено 1000
 
     public CreditAccount(Client owner, Currency currency) {
         super(owner, currency);

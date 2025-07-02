@@ -9,7 +9,7 @@ public class BankProApp {
 
     public static void main(String[] args) {
 
-        Client asan = new Client("Asan Uson", "123");
+        Client asan = new Client("Asan Uson", "1234");
 
         DepositAccount asanDepositAccount = new DepositAccount(asan, Currency.USD);
         CreditAccount asanCreditAccount = new CreditAccount(asan, Currency.EUR);

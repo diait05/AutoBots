@@ -14,14 +14,14 @@ public abstract class BankAccount {
     public BankAccount(Client owner, Currency currency) {
         this.owner = owner;
         this.currency = currency;
-        this.accountNumber = UUID.randomUUID().toString(); // метод который сгенерирует разные числа
+        this.accountNumber = UUID.randomUUID().toString(); // метод который сгенерирует разные числа (уникальные номера счетов)
     }
 
     public abstract void deposit(double amount);
 
     public abstract boolean withdraw(double amount);
 
-    public void addTransaction(String type, double amount){ //добавляется как история действий
+    public void addTransaction(String type, double amount){ //добавляется как история действий (все транзакции в этот список)
         transactions.add(new Transaction(type, amount));
 
     }
